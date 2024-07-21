@@ -1,6 +1,14 @@
+import { AutoMap } from '@automapper/classes';
 export default class BaseEntity {
-    id?: string;
-    createDate?: string;
-    updateDate?: string;
+    @AutoMap()
+    id!: string;
+    @AutoMap()
+    createDate!: string;
+    @AutoMap()
+    updateDate!: string;
 
+
+    constructor(init?: Partial<BaseEntity>) {
+        Object.assign(this, init);
+    }
 }

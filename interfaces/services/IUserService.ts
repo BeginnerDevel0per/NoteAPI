@@ -1,7 +1,16 @@
 import IGenericService from "./IGenericService";
-import RegisterDTO from '../../DTOs/RegisterDTO';
+import RegisterDTO from '../../DTOs/RegisterDto';
+import UserDto from '../../DTOs/UserDto';
+import UpdateProfileDto from '../../DTOs/UpdateProfileDto';
+import UpdatePasswordDto from '../../DTOs/UpdatePasswordDto';
+import UpdateProfileImageDto from '../../DTOs/UpdateProfileImageDto';
 export default interface IUserService<User> extends IGenericService<User> {
 
-    Login(UserName: string, Password: string): Promise<string>;
-    Register(RegisterDTO: RegisterDTO): Promise<string>;
+    Login(UserName: string, Password: string): Promise<object>;
+    Register(RegisterDTO: RegisterDTO): Promise<void>;
+    GetProfile(UserId: string): Promise<UserDto>;
+    UpdateProfileInformation(UpdateProfileDto: UpdateProfileDto): Promise<void>;
+    UpdatePassword(UpdatePasswordDto: UpdatePasswordDto): Promise<void>;
+    RemoveProfileImage(UserId: string): Promise<void>;
+    ChangeProfileImage(UpdateProfileImageDto: UpdateProfileImageDto): Promise<void>;
 }

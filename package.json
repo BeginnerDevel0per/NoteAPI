@@ -3,18 +3,28 @@
     "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.21",
+    "@types/uuid": "^10.0.0",
     "typescript": "^5.5.3"
   },
   "dependencies": {
+    "@automapper/classes": "^8.8.1",
+    "@automapper/core": "^8.8.1",
+    "@nartc/automapper": "^7.0.4",
     "@types/body-parser": "^1.19.5",
+    "@types/express-fileupload": "^1.5.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/rethinkdb": "^2.3.21",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
     "jsonwebtoken": "^9.0.2",
+    "path": "^0.12.7",
+    "reflect-metadata": "^0.1.14",
     "rethinkdb": "^2.4.2",
-    "rethinkdb-ts": "^2.6.0"
+    "rethinkdb-ts": "^2.6.0",
+    "ts-mapper": "^1.2.4",
+    "uuid": "^10.0.0"
   },
   "scripts": {
     "build": "tsc"

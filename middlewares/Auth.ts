@@ -1,12 +1,14 @@
 import JWT from 'jsonwebtoken';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { TokenSettings } from '../config/Token';
 
-
-export default (req: Request, res: Response) => {
+export default (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = String(req.headers.authorization);
+        const authHeader = req.headers.authorization;
+        const token = String(authHeader?.split(' ')[1]);
         const decodedToken = JWT.verify(token, TokenSettings.SecurityKey);
+        req.body.UserId = Object(JWT.decode(token)).UserId;
+        next();
     } catch (error) {
         res.status(401).send();
     }

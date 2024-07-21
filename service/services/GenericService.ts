@@ -18,8 +18,8 @@ export default class GenericService<T> implements IGenericService<T> {
     async AddAsync(entity: T): Promise<void> {
         await this._IGenericRepository.AddAsync(entity);
     }
-    async UpdateAsync(Id: string, entity: T): Promise<void> {
-        await this._IGenericRepository.UpdateAsync(Id, entity);
+    async UpdateAsync(entity: T): Promise<void> {
+        await this._IGenericRepository.UpdateAsync(entity);
     }
     async Remove(Id: string): Promise<void> {
         await this._IGenericRepository.Remove(Id);

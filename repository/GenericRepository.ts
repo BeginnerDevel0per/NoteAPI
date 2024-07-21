@@ -29,8 +29,8 @@ export default class GenericRepository<T> implements IGenericRepository<T> {
     async AddAsync(entity: T): Promise<void> {
         await db.table(this.tableName).insert(entity).run(await this.connection);
     }
-    async UpdateAsync(Id: string, entity: T): Promise<void> {
-        await db.table(this.tableName).get(Id).update(entity as object).run(await this.connection)
+    async UpdateAsync(entity: T): Promise<void> {
+        await db.table(this.tableName).update(entity as object).run(await this.connection)
     }
     async Remove(Id: string): Promise<void> {
         await db.table(this.tableName).get(Id).delete().run(await this.connection);

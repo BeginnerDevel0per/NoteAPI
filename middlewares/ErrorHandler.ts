@@ -2,14 +2,15 @@
 import { Request, Response, NextFunction } from 'express';
 import ClientSideException from '../service/exceptions/ClientSideException';
 
+
 export function ErrorHandler(err: ClientSideException, req: Request, res: Response, next: NextFunction) {
+    //gelen erroru nasıl türde gönderdiğim middlware
     const statusCode = err.statusCode || 500;
-    const message = err || 'Internal Server Error';
+    const message = err.message || 'Internal Server Error';
     res.status(statusCode).json({
-        success: false,
         error: {
+            success: false,
             message: message,
         },
     });
-
 }
