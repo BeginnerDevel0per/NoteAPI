@@ -87,7 +87,7 @@
 -----------------------------------------------------------------
 
   ```http
-  REMOVE /User/ProfileImage
+  DELETE /User/ProfileImage
 ```
 
 - Giriş yapan kullanıcının profil resmini siler. 
@@ -115,8 +115,8 @@
 
 -----------------------------------------------------------------
 
-    ```http
-  REMOVE /Note/{id}
+  ```http
+  DELETE /Note/{id}
 ```
 
 - Giriş yapan kullanıcının idye göre notunu siler. 
