@@ -1,5 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 export default class BaseEntity {
+    
     @AutoMap()
     id!: string;
     @AutoMap()

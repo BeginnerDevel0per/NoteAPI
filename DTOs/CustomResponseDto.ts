@@ -16,7 +16,8 @@ export default class CustomResponseDto<T> {
         return new CustomResponseDto(this.Content, this.Message ? this.Message : "success");
     }
 
+    /*
     SuccessNoModel() {
         return new CustomResponseDto(this.Content, this.Message ? this.Message : "success");
-    }
+    }*/
 }

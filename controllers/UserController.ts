@@ -4,7 +4,6 @@ import CustomResponseDto from '../DTOs/CustomResponseDto';
 import UpdateProfileDto from '../DTOs/UpdateProfileDto';
 import UpdateProfileImageDto from '../DTOs/UpdateProfileImageDto';
 import UpdatePasswordDto from '../DTOs/UpdatePasswordDto';
-import { UploadedFile } from 'express-fileupload';
 export default class UserController {
 
     private _UserService: UserService;
@@ -35,11 +34,10 @@ export default class UserController {
 
     async ChangeProfileImage(req: Request, res: Response) {
         const reqBody = { UserId: req.body.UserId, ImageFile: req.files?.ProfileImage };
-
         res.status(200).json(new CustomResponseDto(await this._UserService.ChangeProfileImage(new UpdateProfileImageDto({ UserId: req.body.UserId, ImageFile: req.files?.ProfileImage }))).Success());
     }
 
     async RemoveProfileImage(req: Request, res: Response) {
         res.status(200).json(new CustomResponseDto(await this._UserService.RemoveProfileImage(req.body.UserId)).Success());
-    }
+    }//sadece user profil resmini dönen controller eklenmeli.
 }

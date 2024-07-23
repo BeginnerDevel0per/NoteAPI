@@ -4,7 +4,8 @@ import UserDto from '../../DTOs/UserDto';
 import UpdateProfileDto from '../../DTOs/UpdateProfileDto';
 import UpdatePasswordDto from '../../DTOs/UpdatePasswordDto';
 import UpdateProfileImageDto from '../../DTOs/UpdateProfileImageDto';
-export default interface IUserService<User> extends IGenericService<User> {
+import User from "../../entities/User";
+export default interface IUserService extends IGenericService<User> {
 
     Login(UserName: string, Password: string): Promise<object>;
     Register(RegisterDTO: RegisterDTO): Promise<void>;

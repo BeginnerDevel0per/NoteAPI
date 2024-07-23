@@ -12,7 +12,7 @@ import UpdatePasswordDto from '../../DTOs/UpdatePasswordDto';
 import { mapper } from '../mappings/MapProfile';
 import UpdateProfileImageDto from '../../DTOs/UpdateProfileImageDto';
 import { Upload } from '../helpers/FileUpload';
-export default class UserService extends GenericService<User> implements IUserService<User> {
+export default class UserService extends GenericService<User> implements IUserService {
 
 
     private readonly _UserRepository: IGenericRepository<User>;
@@ -44,6 +44,7 @@ export default class UserService extends GenericService<User> implements IUserSe
 
     async GetProfile(UserId: string): Promise<UserDto> {
         const UserInformation = await this._UserRepository.GetByIdAsync(UserId);
+        
         let mapping = await mapper.mapAsync(UserInformation, User, UserDto);
         return (mapping);
     }
