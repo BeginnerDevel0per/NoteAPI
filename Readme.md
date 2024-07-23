@@ -1,9 +1,9 @@
 
 ## API Kullanımı
 
-#### Jwt Token için
+#### User endpoint
 
-```http
+  ```http
   GET /Login
 ```
 
@@ -18,7 +18,7 @@
 
 -----------------------------------------------------------------
 
-```http
+  ```http
   POST /Register
 ```
 
@@ -34,14 +34,14 @@
 
 -----------------------------------------------------------------
 
-```http
+  ```http
   GET /User
 ```
 - Giriş yapan kullanıcının kullanıcı bilgilerini döner. 
 
 -----------------------------------------------------------------
 
-```http
+  ```http
   PUT /User
 ```
 
@@ -55,7 +55,7 @@
 - Bu istek için İSTEĞİN headers kısmına JWT token eklenmelidir.
 -----------------------------------------------------------------
 
-```http
+  ```http
   PUT /User/UpdatePassword
 ```
 
@@ -72,7 +72,7 @@
 
 -----------------------------------------------------------------
 
-```http
+  ```http
   PUT /User/ProfileImage
 ```
 
@@ -86,7 +86,7 @@
 
 -----------------------------------------------------------------
 
-```http
+  ```http
   REMOVE /User/ProfileImage
 ```
 
@@ -95,5 +95,44 @@
 
 -----------------------------------------------------------------
 
-
+#### Note endpoint
   
+  ```http
+  GET /Note
+```
+
+- Giriş yapan kullanıcının tüm notlarını döner. 
+- Bu istek için İSTEĞİN headers kısmına JWT token eklenmelidir.
+
+-----------------------------------------------------------------
+
+  ```http
+  GET /Note/{id}
+```
+
+- Giriş yapan kullanıcının idye göre notunu döner. 
+- Bu istek için İSTEĞİN headers kısmına JWT token eklenmelidir.
+
+-----------------------------------------------------------------
+
+    ```http
+  REMOVE /Note/{id}
+```
+
+- Giriş yapan kullanıcının idye göre notunu siler. 
+- Bu istek için İSTEĞİN headers kısmına JWT token eklenmelidir.
+
+-----------------------------------------------------------------
+
+  ```http
+  PUT /Note
+```
+
+| Parametre | Tip     | Açıklama                       |
+| :-------- | :------- | :---------------------------  |
+| `NoteId`      | `string` | **Gerekli**.|
+| `Content`      | `string` | **Gerekli**.|
+
+- Parametreler isteğin body kısmına  eklenmelidir.
+- var olan notu günceller. 
+- Bu istek için İSTEĞİN headers kısmına JWT token eklenmelidir.
