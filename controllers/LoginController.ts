@@ -8,8 +8,8 @@ export default class LoginController {
         this._UserService = new UserService();
     }
     async Login(req: Request, res: Response) {
-        const { UserName, Password } = req.body;
-        res.status(200).json(new CustomResponseDto(await this._UserService.Login(UserName, Password)).Success());
+        const { UserName, Password } = req.query;
+        res.status(200).json(new CustomResponseDto(await this._UserService.Login(String(UserName), String(Password))).Success());
     }
 }
 

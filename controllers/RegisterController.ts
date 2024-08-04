@@ -10,13 +10,11 @@ export default class RegisterController {
     constructor() {
         this._UserService = new UserService();
     }
-
     async Register(req: Request, res: Response) {
         const { Email, UserName, Password, PasswordAgain } = req.body;
-
         res.status(200).json(
             new CustomResponseDto(await this._UserService.Register(
                 new Register(UserName, Email, Password, PasswordAgain)
-            )));
+            )).Success());
     }
 }

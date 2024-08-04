@@ -12,6 +12,8 @@ import UpdatePasswordDto from '../../DTOs/UpdatePasswordDto';
 import { mapper } from '../mappings/MapProfile';
 import UpdateProfileImageDto from '../../DTOs/UpdateProfileImageDto';
 import { Upload } from '../helpers/FileUpload';
+import path from "path";
+import fs from 'fs';
 export default class UserService extends GenericService<User> implements IUserService {
 
 
@@ -44,7 +46,6 @@ export default class UserService extends GenericService<User> implements IUserSe
 
     async GetProfile(UserId: string): Promise<UserDto> {
         const UserInformation = await this._UserRepository.GetByIdAsync(UserId);
-        
         let mapping = await mapper.mapAsync(UserInformation, User, UserDto);
         return (mapping);
     }
@@ -52,7 +53,7 @@ export default class UserService extends GenericService<User> implements IUserSe
 
     async UpdateProfileInformation(UpdateProfileDto: UpdateProfileDto): Promise<void> {
 
-        let User = await this._UserRepository.FirstOrDefault(UpdateProfileDto.UserId);
+        let User = await this._UserRepository.FirstOrDefault({ id: UpdateProfileDto.UserId });
         if (!User)
             throw new ClientSideException("Kullanıcı bulunamadı.", 404);
 
@@ -60,23 +61,23 @@ export default class UserService extends GenericService<User> implements IUserSe
         if (IsUserNameUsed && (IsUserNameUsed.UserName !== User.UserName))
             throw new ClientSideException("Bu kullanıcı adı kullanılıyor", 400);
 
+
         User.Email = UpdateProfileDto.Email;
         User.UserName = UpdateProfileDto.UserName;
         User.updateDate = new Date().toISOString();
         await this._UserRepository.UpdateAsync(User);
     }
 
-
     async UpdatePassword(UpdatePasswordDto: UpdatePasswordDto): Promise<void> {
 
         if (UpdatePasswordDto.NewPassword !== UpdatePasswordDto.NewPasswordAgain)
             throw new ClientSideException("Şifreler Uyuşmuyor.", 400);
 
-        let User = await this._UserRepository.FirstOrDefault(UpdatePasswordDto.UserId);
+        let User = await this._UserRepository.FirstOrDefault({ id: UpdatePasswordDto.UserId });
         if (!User)
             throw new ClientSideException("Kullanıcı bulunamadı.", 400);
 
-        if (User.Password === UpdatePasswordDto.Password)
+        if (User.Password !== UpdatePasswordDto.Password)
             throw new ClientSideException("Şimdiki Şifre Hatalı.", 400);
 
         User.Password = UpdatePasswordDto.NewPassword;
@@ -98,11 +99,9 @@ export default class UserService extends GenericService<User> implements IUserSe
 
         if (UpdateProfileImageDto.ImageFile === null || UpdateProfileImageDto.ImageFile === undefined)
             throw new ClientSideException("Resim dosyası gönderilmedi.", 400);
-
         if (Array.isArray(UpdateProfileImageDto.ImageFile))
             throw new ClientSideException("Birden fazla dosya gönderilemez.", 400);
-
-        let User = await this._UserRepository.FirstOrDefault(UpdateProfileImageDto.UserId);
+        let User = await this._UserRepository.FirstOrDefault({ id: UpdateProfileImageDto.UserId });
         if (!User)
             throw new ClientSideException("Kullanıcı bulunamadı.", 400);
 
@@ -111,6 +110,20 @@ export default class UserService extends GenericService<User> implements IUserSe
         await this._UserRepository.UpdateAsync(User);
     }
 
+
+    async GetUserProfileImage(UserId: string): Promise<Buffer> {
+        let User = await this._UserRepository.FirstOrDefault({ id: UserId });
+        if (!User)
+            throw new ClientSideException("Kullanıcı bulunamadı.", 404);
+
+        if (!User.ProfileImage)
+            throw new ClientSideException("Kullanıcının profil resmi bulunamadı.", 404);
+
+        const imagePath = path?.join(__dirname, "..", "..", "uploads", "profileImages", String(User.ProfileImage));
+
+        return await fs.readFileSync(imagePath);
+
+    }
 }
 
 

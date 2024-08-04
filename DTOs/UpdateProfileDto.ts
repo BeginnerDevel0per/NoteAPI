@@ -1,11 +1,11 @@
 
 export default class UserDto {
 
-    public UserId!: string;
+     UserId!: string;
 
-    public UserName!: string;
+     UserName!: string;
 
-    public Email!: string;
+     Email!: string;
 
     constructor(init?: Partial<UserDto>) {
         Object.assign(this, init);

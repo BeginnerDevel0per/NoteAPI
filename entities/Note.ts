@@ -2,7 +2,9 @@ import { AutoMap } from '@automapper/classes';
 import BaseEntity from './BaseEntity';
 export default class Note extends BaseEntity {
     @AutoMap()
-    Content?: string;
+    Title!: string;
+    @AutoMap()
+    Content?: String;
     @AutoMap()
     UserId?: string;
 

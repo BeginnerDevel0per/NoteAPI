@@ -8,7 +8,6 @@ export const Upload = async (ImageFile: UploadedFile, FolderName: string) => {
 
     if (ImageFile) {
         ImageFile.name = v7() + path.extname(ImageFile.name);
-        console.log(ImageFile.name);
         const uploadPath = path.join(__dirname, '..', "..", 'uploads', FolderName, ImageFile.name);
         await ImageFile.mv(uploadPath);
         return ImageFile.name;

@@ -1,12 +1,12 @@
 export default class UpdatePasswordDto {
 
-    public UserId!: string;
+     UserId!: string;
 
-    public Password!: string;
+     Password!: string;
 
-    public NewPassword!: string;
+     NewPassword!: string;
     
-    public NewPasswordAgain!: string;
+     NewPasswordAgain!: string;
 
 
     constructor(init?: Partial<UpdatePasswordDto>) {

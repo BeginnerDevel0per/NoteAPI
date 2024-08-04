@@ -4,15 +4,16 @@ export default class UserDto {
 
 
     @AutoMap()
-    public UserName!: string;
-    
+    UserName!: string;
+
     @AutoMap()
-    public Email!: string;
+    Email!: string;
 
     @AutoMap()
     ProfileImage!: string;
 
-
+    @AutoMap()
+    updateDate!: string;
     constructor(init?: Partial<UserDto>) {
         Object.assign(this, init);
     }

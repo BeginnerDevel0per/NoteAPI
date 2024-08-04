@@ -14,4 +14,5 @@ export default interface IUserService extends IGenericService<User> {
     UpdatePassword(UpdatePasswordDto: UpdatePasswordDto): Promise<void>;
     RemoveProfileImage(UserId: string): Promise<void>;
     ChangeProfileImage(UpdateProfileImageDto: UpdateProfileImageDto): Promise<void>;
+    GetUserProfileImage(ImageFolderName: string): Promise<Buffer>;
 }

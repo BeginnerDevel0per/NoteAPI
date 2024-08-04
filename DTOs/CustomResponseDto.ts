@@ -1,23 +1,20 @@
 export default class CustomResponseDto<T> {
 
-    Message?: string;
+    IsSuccess?: boolean;
     Content?: T;
-
-    constructor(model?: T, message?: string,) {
-        this.Message = message;
+    ErrorMessage?: string
+    constructor(model?: T, isSuccess?: boolean, errorMessage?: string) {
+        this.IsSuccess = isSuccess;
         this.Content = model;
+        this.ErrorMessage = errorMessage;
     }
 
     Fail() {
-        return new CustomResponseDto(this.Message ? this.Message : "fail");
+        return new CustomResponseDto(this.Content, false, this.ErrorMessage);
     }
 
     Success() {
-        return new CustomResponseDto(this.Content, this.Message ? this.Message : "success");
+        return new CustomResponseDto(this.Content, true);
     }
 
-    /*
-    SuccessNoModel() {
-        return new CustomResponseDto(this.Content, this.Message ? this.Message : "success");
-    }*/
 }

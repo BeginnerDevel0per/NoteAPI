@@ -1,13 +1,13 @@
 import { AutoMap } from '@automapper/classes';
 export default class Register {
     @AutoMap()
-    public UserName: string;
+     UserName: string;
     @AutoMap()
-    public Email: string;
+     Email: string;
     @AutoMap()
-    public Password: string;
+     Password: string;
     @AutoMap()
-    public PasswordAgain: string;
+     PasswordAgain: string;
 
     constructor(usernName: string, email: string, password: string, passwordAgain: string) {
         this.UserName = usernName;

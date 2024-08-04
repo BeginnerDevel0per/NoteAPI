@@ -1,3 +1,5 @@
+import CustomResponseDto from '../../DTOs/CustomResponseDto';
+
 export default class ClientSideException extends Error {
     public statusCode: number;
     public message: string;

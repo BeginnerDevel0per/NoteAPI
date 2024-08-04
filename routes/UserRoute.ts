@@ -8,7 +8,8 @@ const userController = new UserController();
 
 
 router.route("/UpdatePassword").put(asyncHandler(userController.UpdatePassword.bind(userController)));
-router.route("/ProfileImage").put(asyncHandler(userController.ChangeProfileImage.bind(userController)));
+router.route("/ProfileImage").get(asyncHandler(userController.GetProfileImage.bind(userController)));
+router.route("/ProfileImage").post(asyncHandler(userController.ChangeProfileImage.bind(userController)));
 router.route("/ProfileImage").delete(asyncHandler(userController.RemoveProfileImage.bind(userController)));
 router.route("/").get(asyncHandler(userController.GetProfile.bind(userController)));
 router.route("/").put(asyncHandler(userController.UpdateProfileInformation.bind(userController)));

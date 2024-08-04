@@ -1,17 +1,17 @@
 import { AutoMap } from "@automapper/classes";
 
-export default class UpdateNoteDto {
-
-    @AutoMap()
-    UserId!: string;
+export default class NoteDto {
     @AutoMap()
     NoteId!: string;
     @AutoMap()
-    Content?: string;
+    Content!: string;
+    
+    @AutoMap()
+    createDate!: string;
     @AutoMap()
     Title!: string;
 
-    constructor(init?: Partial<UpdateNoteDto>) {
+    constructor(init?: Partial<NoteDto>) {
         Object.assign(this, init);
     }
 

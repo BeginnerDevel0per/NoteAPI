@@ -5,11 +5,11 @@ const router = express.Router();
 const noteController = new NoteController();
 
 
-
+router.route("/AddImage").post(asyncHandler(noteController.AddNoteImage.bind(noteController)));
+router.route("/Image/:imageid").get(asyncHandler(noteController.GetNoteImage.bind(noteController)));
+router.route("/:id").get(asyncHandler(noteController.GetNoteById.bind(noteController)));
 router.route("/").get(asyncHandler(noteController.GetAllNotes.bind(noteController)));
 router.route("/").put(asyncHandler(noteController.UpdateNote.bind(noteController)));
-router.route("/:id").get(asyncHandler(noteController.GetNoteById.bind(noteController)));
 router.route("/").post(asyncHandler(noteController.AddNote.bind(noteController)));
 router.route("/:id").delete(asyncHandler(noteController.RemoveNote.bind(noteController)));
-
 export default router;

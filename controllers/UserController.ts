@@ -17,9 +17,9 @@ export default class UserController {
     }
 
     async UpdateProfileInformation(req: Request, res: Response) {
-        const { UserName, Email } = req.body;
+        const { UserId, UserName, Email } = req.body;
         res.status(200).json(new CustomResponseDto(
-            await this._UserService.UpdateProfileInformation(new UpdateProfileDto({ UserName: UserName, Email: Email }))).Success());
+            await this._UserService.UpdateProfileInformation(new UpdateProfileDto({ UserId: UserId, UserName: UserName, Email: Email }))).Success());
     }
 
     async UpdatePassword(req: Request, res: Response) {
@@ -33,11 +33,16 @@ export default class UserController {
     }
 
     async ChangeProfileImage(req: Request, res: Response) {
-        const reqBody = { UserId: req.body.UserId, ImageFile: req.files?.ProfileImage };
-        res.status(200).json(new CustomResponseDto(await this._UserService.ChangeProfileImage(new UpdateProfileImageDto({ UserId: req.body.UserId, ImageFile: req.files?.ProfileImage }))).Success());
+        const reqBody = { UserId: req.body.UserId, ImageFile: req.files?.file };
+        res.status(200).json(new CustomResponseDto(await this._UserService.ChangeProfileImage(new UpdateProfileImageDto({ UserId: req.body.UserId, ImageFile: req.files?.file }))).Success());
     }
 
     async RemoveProfileImage(req: Request, res: Response) {
         res.status(200).json(new CustomResponseDto(await this._UserService.RemoveProfileImage(req.body.UserId)).Success());
-    }//sadece user profil resmini dönen controller eklenmeli.
+    }
+
+    async GetProfileImage(req: Request, res: Response) {
+        res.set('Content-Type', 'image/jpeg');
+        res.status(200).send(await this._UserService.GetUserProfileImage(req.body.UserId));
+    }
 }
