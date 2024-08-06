@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import ITaskService from '../interfaces/services/ITaskService';
 import TaskService from '../service/services/TaskService';
-export default class LoginController {
+export default class TaskController {
 
     private readonly _TaskService: ITaskService;
     constructor() {

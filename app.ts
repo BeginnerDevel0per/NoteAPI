@@ -5,6 +5,7 @@ import fileUpload from 'express-fileupload';
 import { ErrorHandler } from './middlewares/ErrorHandler';
 import NoteRoute from './routes/NoteRoute';
 import UserRoute from './routes/UserRoute';
+import TaskRoute from './routes/TaskRoute';
 import NoteImageRoute from './routes/NoteImageRoute';
 import RegisterRoute from './routes/RegisterRoute';
 import LoginRoute from './routes/LoginRoute';
@@ -22,6 +23,7 @@ app.use(fileUpload());
 app.use("/Login", LoginRoute);
 app.use("/Note", NoteImageRoute);
 app.use("/Note", Authentication, NoteRoute);
+app.use("/Task", Authentication, TaskRoute);
 app.use("/User", Authentication, UserRoute);
 app.use("/Register", RegisterRoute);
 
