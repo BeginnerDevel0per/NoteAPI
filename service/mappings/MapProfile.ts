@@ -8,6 +8,8 @@ import Note from '../../entities/Note';
 import { classes } from '@automapper/classes';
 import UpdateNoteDto from '../../DTOs/UpdateNoteDto';
 import NoteDto from '../../DTOs/NoteDto';
+import AddTaskDto from '../../DTOs/AddTaskDto';
+import Task from '../../entities/Task';
 export const mapper = createMapper({
     strategyInitializer: classes(),
 });
@@ -37,5 +39,11 @@ createMap(mapper, UpdateNoteDto, Note,
 );
 createMap(mapper, Note, NoteDto,
     forMember((destination) => destination.NoteId, mapFrom((conversation) => conversation.id))
+);
+//#endregion
+
+//#region TaskMapper
+createMap(mapper, AddTaskDto, Task,
+    forMember((destination) => destination.createDate, mapFrom(() => new Date().toISOString()))
 );
 //#endregion

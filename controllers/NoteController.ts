@@ -43,7 +43,6 @@ export default class NoteController {
         }))).Success());
     }
     async AddNoteImage(req: Request, res: Response) {
-        console.log(req.headers);
         const reqBody: AddNoteImageDto = { UserId: req.body.UserId, File: req.files?.File, NoteId: req.body.NoteId };
         res.status(200).json(await this._NoteService.AddImage(new AddNoteImageDto(reqBody)));
     }
