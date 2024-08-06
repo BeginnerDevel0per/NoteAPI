@@ -4,7 +4,6 @@ import INoteService from '../interfaces/services/INoteService';
 import CustomResponseDto from '../DTOs/CustomResponseDto';
 import AddNoteDto from '../DTOs/AddNoteDto';
 import UpdateNoteDto from '../DTOs/UpdateNoteDto';
-import { json } from 'body-parser';
 import AddNoteImageDto from '../DTOs/AddNoteImageDto';
 export default class NoteController {
 

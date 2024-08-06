@@ -2,11 +2,12 @@ import UserService from '../service/services/UserService';
 import CustomResponseDto from '../DTOs/CustomResponseDto';
 import { Request, Response } from 'express';
 import Register from '../DTOs/RegisterDto';
+import IUserService from '../interfaces/services/IUserService';
 
 
 
 export default class RegisterController {
-    private _UserService: UserService;
+    private _UserService: IUserService;
     constructor() {
         this._UserService = new UserService();
     }

@@ -1,6 +1,6 @@
 import GenericService from "./GenericService";
 import IGenericRepository from '../../interfaces/repositories/IGenericRepository';
-import GenericRepository from '../../repository/GenericRepository';
+import UserRepository from '../../repository/UserRepository';
 import IUserService from "../../interfaces/services/IUserService";
 import { token } from '../security/CreateToken';
 import RegisterDTO from "../../DTOs/RegisterDto";
@@ -20,7 +20,7 @@ export default class UserService extends GenericService<User> implements IUserSe
     private readonly _UserRepository: IGenericRepository<User>;
 
     constructor() {
-        const userRepository = new GenericRepository<User>("User");
+        const userRepository = new UserRepository();
         super(userRepository);
         this._UserRepository = userRepository;
     }

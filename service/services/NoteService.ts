@@ -1,7 +1,7 @@
 import GenericService from "./GenericService";
 import Note from "../../entities/Note";
 import IGenericRepository from "../../interfaces/repositories/IGenericRepository";
-import GenericRepository from '../../repository/GenericRepository';
+import NoteRepository from '../../repository/NoteRepository';
 import INoteService from '../../interfaces/services/INoteService';
 import UpdateNoteDto from "../../DTOs/UpdateNoteDto";
 import ClientSideException from "../exceptions/ClientSideException";
@@ -12,7 +12,7 @@ import { Upload } from "../helpers/FileUpload";
 import path from "path";
 import fs from 'fs';
 import NoteDto from "../../DTOs/NoteDto";
-
+import { Address } from '../../config/Address';
 
 
 export default class NoteService extends GenericService<Note> implements INoteService {
@@ -20,9 +20,9 @@ export default class NoteService extends GenericService<Note> implements INoteSe
 
     private readonly _NoteRepository: IGenericRepository<Note>;
     constructor() {
-        const NoteRepository = new GenericRepository<Note>("Note");
-        super(NoteRepository);
-        this._NoteRepository = NoteRepository;
+        const noteRepository = new NoteRepository();
+        super(noteRepository);
+        this._NoteRepository = noteRepository;
     }
 
     async AddNote(addNoteDto: AddNoteDto): Promise<NoteDto> {
@@ -79,7 +79,7 @@ export default class NoteService extends GenericService<Note> implements INoteSe
             throw new ClientSideException("Birden fazla resim gönderilemez.", 400)
         const imageName = await Upload(AddNoteImageDto.File, "noteImages");
 
-        return ({ success: 1, file: { url: `http://localhost:5000/Note/Image/${imageName}` } });
+        return ({ success: 1, file: { url: `${Address.url}/Note/Image/${imageName}` } });
     }
     async GetImage(ImageName: string): Promise<any> {
         const imagePath = path?.join(__dirname, "..", "..", "uploads", "noteImages", String(ImageName));

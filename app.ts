@@ -9,6 +9,7 @@ import NoteImageRoute from './routes/NoteImageRoute';
 import RegisterRoute from './routes/RegisterRoute';
 import LoginRoute from './routes/LoginRoute';
 import Authentication from './middlewares/Auth';
+import { Address } from './config/Address';
 const app = express();
 
 app.use(cors({
@@ -27,4 +28,4 @@ app.use("/Register", RegisterRoute);
 app.use(ErrorHandler);//custom hata yonetimi
 
 
-app.listen(5000, () => { console.log("5000 çalışıyor") });
+app.listen(Address.port, () => { console.log("5000 çalışıyor") });

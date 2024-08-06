@@ -4,9 +4,10 @@ import CustomResponseDto from '../DTOs/CustomResponseDto';
 import UpdateProfileDto from '../DTOs/UpdateProfileDto';
 import UpdateProfileImageDto from '../DTOs/UpdateProfileImageDto';
 import UpdatePasswordDto from '../DTOs/UpdatePasswordDto';
+import IUserService from '../interfaces/services/IUserService';
 export default class UserController {
 
-    private _UserService: UserService;
+    private _UserService: IUserService;
 
     constructor() {
         this._UserService = new UserService();
